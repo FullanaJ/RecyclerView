@@ -10,6 +10,7 @@ import java.util.List;
 
 public class ElementosViewModel extends AndroidViewModel {
 
+    MutableLiveData<Elemento> elementoSeleccionado = new MutableLiveData<>();
     ElementosRepositorio elementosRepositorio;
 
     MutableLiveData<List<Elemento>> listElementosMutableLiveData = new MutableLiveData<>();
@@ -34,7 +35,13 @@ public class ElementosViewModel extends AndroidViewModel {
             }
         });
     }
+    void seleccionar(Elemento elemento){
+        elementoSeleccionado.setValue(elemento);
+    }
 
+    MutableLiveData<Elemento> seleccionado(){
+        return elementoSeleccionado;
+    }
     void eliminar(Elemento elemento){
         elementosRepositorio.eliminar(elemento, new ElementosRepositorio.Callback() {
             @Override
